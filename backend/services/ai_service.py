@@ -1,17 +1,23 @@
-import openai
-import json
+from openai import OpenAI
 from ..models.token_model import TokenDetails
-import os
+import json
 from dotenv import load_dotenv
+import os
+import time
 
 load_dotenv()
 
-openai.api_key = os.getenv("OPEN_AI_API_KEY")
+client = OpenAI(
+    api_key=os.environ.get("OPEN_AI_API_KEY"),
+)
+
 
 def generate_token_details(prompt: str) -> TokenDetails:
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": f"Создай токен по запросу: {prompt}"}]
+    time.sleep(10)
+    
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": f"Создайте токен по запросу: {prompt}"}],
     )
     data = json.loads(response["choices"][0]["message"]["content"])
     return TokenDetails(name=data["name"], symbol=data["symbol"], supply=data["supply"])
