@@ -4,12 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["None"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
 fastapi = "^0.115.7"
 web3 = "^7.7.0"
 openai = "^1.60.2"
+python-dotenv = "^1.0.1"
 
 
 [tool.poetry.group.dev.dependencies]

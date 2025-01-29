@@ -1,8 +1,12 @@
 import openai
 import json
-from models.token_model import TokenDetails
+from ..models.token_model import TokenDetails
+import os
+from dotenv import load_dotenv
 
-openai.api_key = "ТВОЙ_OPENAI_API_КЛЮЧ"
+load_dotenv()
+
+openai.api_key = os.getenv("OPEN_AI_API_KEY")
 
 def generate_token_details(prompt: str) -> TokenDetails:
     response = openai.ChatCompletion.create(

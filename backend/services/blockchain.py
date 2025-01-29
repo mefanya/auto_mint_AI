@@ -1,10 +1,14 @@
 from web3 import Web3
 import json
-from models.token_model import TokenDetails
+from ..models.token_model import TokenDetails
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 WEB3_PROVIDER = "https://rpc.sonicchain.com"
-PRIVATE_KEY = "ТВОЙ_ПРИВАТНЫЙ_КЛЮЧ"
-ACCOUNT_ADDRESS = "ТВОЙ_АДРЕС"
+PRIVATE_KEY = os.getenv("PRIVATE_KEY")
+ACCOUNT_ADDRESS = os.getenv("ACCOUNT_ADDRESS")
 
 w3 = Web3(Web3.HTTPProvider(WEB3_PROVIDER))
 account = w3.eth.account.from_key(PRIVATE_KEY)
